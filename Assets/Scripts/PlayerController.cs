@@ -33,13 +33,27 @@ public class PlayerController : MonoBehaviour
     private TMPro.TextMeshProUGUI AmmoCounter;
     private TMPro.TextMeshProUGUI CST; //centerscreentext
 
-    // private Transform gunEnd;   
-    // public GameObject gun, hipPosition, ADSPosition;
-    
-
     private CharacterController characterController;
    
     #endregion
+
+    Vector3 moveDirection = Vector3.zero;
+
+    
+    float rotationX = 0;
+
+       public bool canMove = true;
+       public bool runInterrupt = false;
+       public bool isRunning;
+
+       #region -INPUTS IN-
+
+        private PlayerInputs playerInputs;
+
+        public Vector2 input_Movement;
+        public Vector2 input_View;
+
+       #endregion
 
 
 
