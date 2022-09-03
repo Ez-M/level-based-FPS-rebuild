@@ -326,6 +326,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 5366995783291738075, guid: 12ef782805593a049957ffb8bfbd46de, type: 3}
+      propertyPath: Fire2.m_Name
+      value: Fire 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366995783291738075, guid: 12ef782805593a049957ffb8bfbd46de, type: 3}
+      propertyPath: Fire3.m_Name
+      value: Fire 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366995783291738075, guid: 12ef782805593a049957ffb8bfbd46de, type: 3}
+      propertyPath: Reload.m_Name
+      value: Reload
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366995783291738075, guid: 12ef782805593a049957ffb8bfbd46de, type: 3}
+      propertyPath: Weapon1.m_Name
+      value: Weapon 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366995783291738075, guid: 12ef782805593a049957ffb8bfbd46de, type: 3}
+      propertyPath: Weapon2.m_Name
+      value: Weapon 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366995783291738075, guid: 12ef782805593a049957ffb8bfbd46de, type: 3}
+      propertyPath: playerSettings.JumpingHeight
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366995783291738075, guid: 12ef782805593a049957ffb8bfbd46de, type: 3}
+      propertyPath: playerSettings.JumpingFalloff
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366995783291738075, guid: 12ef782805593a049957ffb8bfbd46de, type: 3}
+      propertyPath: playerSettings.ViewXSensitivity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366995783291738075, guid: 12ef782805593a049957ffb8bfbd46de, type: 3}
+      propertyPath: playerSettings.ViewYSensitivity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6731104711549409814, guid: 12ef782805593a049957ffb8bfbd46de, type: 3}
       propertyPath: m_RootOrder
       value: 1

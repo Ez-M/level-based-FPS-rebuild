@@ -55,13 +55,13 @@ public class PlayerManager : MonoBehaviour
         playerCap = gameObject.transform.GetChild(0).gameObject;
         playerController = playerCap.GetComponent<PlayerController>();
         // leanPoint = playerCap.transform.GetChild(0).gameObject;
-        // playerHead = leanPoint.transform.GetChild(0).gameObject;
+        playerHead = playerCap.transform.GetChild(0).gameObject;
         // playerCam = playerHead.transform.GetChild(0).gameObject.GetComponent<Camera>();
         playerCam = playerCap.transform.GetChild(0).gameObject.GetComponent<Camera>();
         // gunCam = playerCam.transform.GetChild(0).gameObject.GetComponent<Camera>();
 
         characterController = playerCap.GetComponent<CharacterController>();
-        inventoryController = gameObject.GetComponent<InventoryController>();
+        // inventoryController = gameObject.GetComponent<InventoryController>();
         }
 
     public void setPlayerHP(float to)

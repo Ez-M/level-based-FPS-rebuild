@@ -26,11 +26,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691205407002341712}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.608, z: 0.128}
+  m_LocalPosition: {x: 0, y: 0.6079999, z: 0.12800002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2016676010290792870}
+  m_Father: {fileID: 3626721274581200781}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2301175773232326448
@@ -84,6 +84,38 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691205407002341712}
   m_Enabled: 1
+--- !u!1 &2824103963626493970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3626721274581200781}
+  m_Layer: 0
+  m_Name: CameraHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3626721274581200781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824103963626493970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8810743749088992122}
+  m_Father: {fileID: 2016676010290792870}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4781726200879814404
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +161,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b03983bb17e0c4c8c23119668fca55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCap: {fileID: 0}
+  leanPoint: {fileID: 0}
+  playerHead: {fileID: 0}
+  playerCam: {fileID: 0}
+  gunCam: {fileID: 0}
+  playerController: {fileID: 0}
+  WeaponUI: {fileID: 0}
+  activeWeapon: {fileID: 0}
+  WUIC: {fileID: 0}
+  inventoryController: {fileID: 0}
+  ScoreCard: {fileID: 0}
+  AmmoCounter: {fileID: 0}
+  CST: {fileID: 0}
+  characterController: {fileID: 0}
 --- !u!1 &6915257685911102583
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +209,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8810743749088992122}
+  - {fileID: 3626721274581200781}
   m_Father: {fileID: 6731104711549409814}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -277,3 +323,100 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72590d09b92fd464f842f2ab98e11610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryController: {fileID: 0}
+  input_Movement: {x: 0, y: 0}
+  input_View: {x: 0, y: 0}
+  Jump:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d2d5dc54-3f8d-42ef-8a53-84d9cc614a69
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Sprint:
+    m_Name: Sprint
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 90178d98-8245-4c01-bbc6-769a2825d492
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Interact:
+    m_Name: Interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2329ee61-2e04-45a3-8680-bc0f13e64c38
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Fire1:
+    m_Name: Fire 1
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c9457e15-a2bd-4674-94ae-74f87b201489
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Fire2:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6c7e42fc-9718-45fe-9ac5-958035dc8a31
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Fire3:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 580344d6-72bf-44c0-9fd1-04f62e4e6ad3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Reload:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3ecc3d71-28f7-4682-bfc5-8fc74d56022f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Weapon1:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b6320851-f607-4cb8-997f-5337f9714110
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Weapon2:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a75bf7a3-5240-4109-aba6-4979f3f2e09b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  walkingSpeed: 10
+  runningSpeed: 15
+  jumpingForce: {x: 0, y: 0, z: 0}
+  JumpingFalloff: 3
+  gravity: 0
+  gravityAmount: 0
+  gravityMin: 0
+  lookSpeed: 1
+  viewClampYMin: -70
+  viewClampYMax: 80
+  canMove: 1
+  runInterrupt: 0
+  isRunning: 0
