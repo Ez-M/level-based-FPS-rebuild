@@ -40,11 +40,7 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDirection = Vector3.zero;
 
     
-    float rotationX = 0;
 
-       public bool canMove = true;
-       public bool runInterrupt = false;
-       public bool isRunning;
 
        #region -INPUTS IN-
 
@@ -56,13 +52,40 @@ public class PlayerController : MonoBehaviour
        #endregion
 
 
+        #region -MOVEMENT STATS-            
+
+        [Header("Movement Values")]
+        public float walkingSpeed = 10f;
+        public float runningSpeed = 15f;
+        public float jumpSpeed = 3f;
+        public float gravity = 10f; 
+        public float viewClampYMin = -70;
+        public float viewClampYMax = 80;       
+        float rotationX = 0;
+        public bool canMove = true;
+        public bool runInterrupt = false;
+        public bool isRunning;
+
+
+
+        #endregion
+
+    void Awake(){
+        
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
+
+        // characterController = GetComponent<CharacterController>();
+        
+
                 // Lock Cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible=false;    
+        
 
 
     }
@@ -72,4 +95,35 @@ public class PlayerController : MonoBehaviour
     {
         
     }
+
+    #region -Funcs-
+
+    public void init(PlayerManager initializer){
+
+        playerManager = initializer;
+        playerCap = playerManager.playerCap;
+        playerController = playerManager.playerController;
+        // leanPoint = playerManager.leanPoint;
+        // playerHead = playerManager.playerHead;
+        playerCam = playerManager.playerCam;
+        // gunCam = playerManager.gunCam;   
+
+        inventoryController = initializer.GetComponent<InventoryController>();
+
+
+
+        // WeaponUI = playerManager.WeaponUI;
+        // WUIC = playerManager.WUIC;
+        // ScoreCard = playerManager.ScoreCard;
+        // AmmoCounter = playerManager.AmmoCounter;
+        // CST = playerManager.CST;
+    
+    }
+
+    #endregion
+
+
 }
+
+
+
