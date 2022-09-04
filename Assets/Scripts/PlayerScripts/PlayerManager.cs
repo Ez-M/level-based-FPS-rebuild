@@ -30,6 +30,8 @@ public class PlayerManager : MonoBehaviour
    
     #endregion
 
+    public float score;
+
     private float playerHP;
 
     void Awake(){
@@ -83,6 +85,18 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Player Heal! HP " + playerHP);
             return playerHP;
         }
+    }
+
+    public void scoreAdd(float input)
+    {
+        score += input;
+
+        updateScore();
+    }
+
+    public void updateScore()
+    {    
+        ScoreCard.text = score.ToString();
     }
 
     #endregion
