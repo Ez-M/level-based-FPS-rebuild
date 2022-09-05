@@ -8,52 +8,54 @@ public class PlayerInputHandler : MonoBehaviour
 {
 
 
-           #region -INPUTS IN-
+    #region -INPUTS IN-
 
-        private PlayerInputs playerInputs;
+    private PlayerInputs playerInputs;
 
-        public Vector2 input_Movement;
-        public Vector2 input_View;
+    public Vector2 input_Movement;
+    public Vector2 input_View;
 
-        public InputAction Jump;
-        public InputAction Sprint;
-        public InputAction Interact;
-        public InputAction Fire1;
-        public InputAction Fire2;
-        public InputAction Fire3;
-        public InputAction Reload;
-        public InputAction Weapon1;
-        public InputAction Weapon2;
+    public InputAction Jump;
+    public InputAction Sprint;
+    public InputAction Interact;
+    public InputAction Fire1;
+    public InputAction Fire2;
+    public InputAction Fire3;
+    public InputAction Reload;
+    public InputAction Weapon1;
+    public InputAction Weapon2;
 
-       public bool input_Jump;
-       public bool input_Sprint;
-       public bool input_Interact;
-       public bool input_Fire1;
-       public bool input_Fire2;
-       public bool input_Fire3;
-       public bool input_Reload;
-       public bool input_A1;
-       public bool input_A2;
+    public bool input_Jump;
+    public bool input_Sprint;
+    public bool input_Interact;
+    public bool input_Fire1;
+    public bool input_Fire2;
+    public bool input_Fire3;
+    public bool input_Reload;
+    public bool input_A1;
+    public bool input_A2;
 
 
-       #endregion
+    #endregion
+
+    private bool AcceptingInputs;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-        private void setInputs()
+    private void setInputs()
     {
-        playerInputs= new PlayerInputs();
+        playerInputs = new PlayerInputs();
 
         Jump = playerInputs.Character.Jump;
         Sprint = playerInputs.Character.Sprint;
@@ -64,21 +66,21 @@ public class PlayerInputHandler : MonoBehaviour
         Reload = playerInputs.Weapons.Reload;
 
         playerInputs.Character.Movement.performed += e => input_Movement = e.ReadValue<Vector2>();
-        playerInputs.Character.View.performed += e =>  input_View =  e.ReadValue<Vector2>();
+        playerInputs.Character.View.performed += e => input_View = e.ReadValue<Vector2>();
 
 
         playerInputs.Enable();
-       
+
     }
 
 
-        #region  -InputFunctions-
+    #region  -InputFunctions-
     private void jumpisPressed(InputAction.CallbackContext value)
     {
         input_Jump = true;
     }
 
-        private void jumpisReleased(InputAction.CallbackContext value)
+    private void jumpisReleased(InputAction.CallbackContext value)
     {
         input_Jump = false;
     }
@@ -108,8 +110,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void Fire1isPressed(InputAction.CallbackContext value)
     {
-        input_Fire1 = true;  
-        
+        input_Fire1 = true;
+
     }
 
     private void Fire1isReleased(InputAction.CallbackContext value)
@@ -125,7 +127,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     private void Fire2isReleased(InputAction.CallbackContext value)
-    {   
+    {
         input_Fire2 = false;
     }
 
@@ -139,7 +141,7 @@ public class PlayerInputHandler : MonoBehaviour
         input_Interact = false;
     }
 
-     private void Alpha1isPressed(InputAction.CallbackContext value)
+    private void Alpha1isPressed(InputAction.CallbackContext value)
     {
         input_A1 = true;
         // inventoryController.changeWeapon(0); //1 because list indexes from 0 - see changeWeapon
@@ -168,5 +170,31 @@ public class PlayerInputHandler : MonoBehaviour
 
 
     #endregion
+
+
+    public bool getAcceptingInputs()
+    {
+        return AcceptingInputs;
+    }
+
+    public void setAcceptingInputs(bool setTo)
+    {
+        AcceptingInputs = setTo;
+        if (setTo == false)
+        {
+            input_A1 = false;
+            input_Jump = false;
+            input_Sprint = false;
+            input_Interact = false;
+            input_Fire1 = false;
+            input_Fire2 = false;
+            input_Fire3 = false;
+            input_Reload = false;
+            input_A1 = false;
+            input_A2 = false;
+
+
+        }
+    }
 
 }

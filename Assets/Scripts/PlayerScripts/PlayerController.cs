@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private Camera gunCam;    
 
     private PlayerController playerController; 
+    private PlayerInputHandler playerInputHandler;
+    // private PlayerMovement playerMovement;
 
     private GameObject WeaponUI;
     private GameObject activeWeapon;
@@ -44,26 +46,26 @@ public class PlayerController : MonoBehaviour
     
 
 
-       #region -INPUTS IN-
+    //    #region -INPUTS IN-
 
-        private PlayerInputs playerInputs;
+    //     private PlayerInputs playerInputs;
 
-        public Vector2 input_Movement;
-        public Vector2 input_View;
+    //     public Vector2 input_Movement;
+    //     public Vector2 input_View;
 
-        public InputAction Jump;
-        public InputAction Sprint;
-        public InputAction Interact;
-        public InputAction Fire1;
-        public InputAction Fire2;
-        public InputAction Fire3;
-        public InputAction Reload;
-        public InputAction Weapon1;
-        public InputAction Weapon2;
+    //     public InputAction Jump;
+    //     public InputAction Sprint;
+    //     public InputAction Interact;
+    //     public InputAction Fire1;
+    //     public InputAction Fire2;
+    //     public InputAction Fire3;
+    //     public InputAction Reload;
+    //     public InputAction Weapon1;
+    //     public InputAction Weapon2;
 
 
 
-       #endregion
+    //    #endregion
 
 
         #region -MOVEMENT STATS-            
@@ -86,11 +88,11 @@ public class PlayerController : MonoBehaviour
         public bool runInterrupt = false;
         public bool isRunning;
 
-
-
-
-
         #endregion
+
+
+          private Vector2 input_Movement;
+          private Vector2 input_View;
 
        private Vector3 newCameraRotation;
        private Vector3 newCharacterRotation;
@@ -124,6 +126,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+
         #region -Movement and Look- 
         if(canMove)
         {
@@ -131,8 +134,6 @@ public class PlayerController : MonoBehaviour
             CalculateView();
             CalculateJumpChange();
         }
-
-
         
         #endregion
         
@@ -174,8 +175,15 @@ public class PlayerController : MonoBehaviour
 
         inventoryController = initializer.GetComponent<InventoryController>();
         characterController = initializer.characterController;
+        
 
 
+        newCameraRotation = playerHead.transform.localRotation.eulerAngles;
+        newCharacterRotation = playerHead.transform.localRotation.eulerAngles;
+
+
+        input_Movement = playerInputHandler.input_Movement; 
+        input_View = playerInputHandler.input_View; 
 
         // WeaponUI = playerManager.WeaponUI;
         // WUIC = playerManager.WUIC;
@@ -183,43 +191,23 @@ public class PlayerController : MonoBehaviour
         // AmmoCounter = playerManager.AmmoCounter;
         // CST = playerManager.CST;
 
-        setInputs();
+        getInputs();
     
     }
 
 
-    private void setInputs()
+    private void getInputs()
     {
-        playerInputs= new PlayerInputs();
 
-        Jump = playerInputs.Character.Jump;
-        Sprint = playerInputs.Character.Sprint;
-        Interact = playerInputs.Character.Interact;
-        Fire1 = playerInputs.Weapons.Fire1;
-        Fire2 = playerInputs.Weapons.Fire2;
-        Fire3 = playerInputs.Weapons.Fire3;
-        Reload = playerInputs.Weapons.Reload;
-        // Weapon1 = playerInputs.Inventory.Weapon1;
-        // Weapon2 = playerInputs.Inventory.Weapon2;
-        // TempAction1 = playerInputs.Inventory.TempAction1;
 
-        playerInputs.Character.Movement.performed += e => input_Movement = e.ReadValue<Vector2>();
-        playerInputs.Character.View.performed += e =>  input_View =  e.ReadValue<Vector2>();
 
-        Jump.performed += JumpFunction;
-
-        playerInputs.Enable();
-
-        newCameraRotation = playerHead.transform.localRotation.eulerAngles;
-        newCharacterRotation = playerHead.transform.localRotation.eulerAngles;
 
         
     }
 
     private void CalculateMovement()
-    {
-   
-
+    {   
+ 
         
         float forwardSpeed = (isRunning == true ? runningSpeed : walkingSpeed) * input_Movement.y * Time.deltaTime;
         float horizontalSpeed = (isRunning == true ? runningSpeed: walkingSpeed) * input_Movement.x * Time.deltaTime;
