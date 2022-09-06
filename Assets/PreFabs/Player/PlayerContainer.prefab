@@ -165,6 +165,7 @@ MonoBehaviour:
   leanPoint: {fileID: 0}
   playerHead: {fileID: 0}
   playerCam: {fileID: 0}
+  playerInputHandler: {fileID: 0}
   gunCam: {fileID: 0}
   playerController: {fileID: 0}
   WeaponUI: {fileID: 0}
@@ -175,6 +176,7 @@ MonoBehaviour:
   AmmoCounter: {fileID: 0}
   CST: {fileID: 0}
   characterController: {fileID: 0}
+  score: 0
 --- !u!1 &6915257685911102583
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +191,7 @@ GameObject:
   - component: {fileID: 8006093470220439246}
   - component: {fileID: 7826281377078877942}
   - component: {fileID: 8490089519020066169}
+  - component: {fileID: 7743641530868905855}
   - component: {fileID: 5366995783291738075}
   m_Layer: 0
   m_Name: PlayerModel
@@ -311,6 +314,110 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7743641530868905855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6915257685911102583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed064568f706364ab5c05fab21f7f80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input_Movement: {x: 0, y: 0}
+  input_View: {x: 0, y: 0}
+  Jump:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b3921014-1a07-4580-8ea8-9c7dd1382de4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Sprint:
+    m_Name: Sprint
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c3e81983-4777-4d00-a80e-7dd91f5e21a3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Interact:
+    m_Name: Interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a408bae7-e456-45e4-a3bd-89bb0d995ab0
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Fire1:
+    m_Name: Fire 1
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 642706e5-cff7-44e9-8eb9-eed49eba54e5
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Fire2:
+    m_Name: Fire 2
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4d86acc2-c5bf-46bf-93a7-64fbf8d94b8e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Fire3:
+    m_Name: Fire 3
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5df07679-f4fa-4a71-b580-0b52e430f4db
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Reload:
+    m_Name: Reload
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 49c3cea3-1540-4bc9-a84a-3fc049aa1ce5
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Weapon1:
+    m_Name: Weapon 1
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 032dc1fb-d65e-4c16-b9fa-b81b66fea23c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  Weapon2:
+    m_Name: Weapon 2
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9290ef60-c356-4ab0-a69b-7f774cd62744
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  input_Jump: 0
+  input_Sprint: 0
+  input_Interact: 0
+  input_Fire1: 0
+  input_Fire2: 0
+  input_Fire3: 0
+  input_Reload: 0
+  input_A1: 0
+  input_A2: 0
 --- !u!114 &5366995783291738075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,96 +431,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryController: {fileID: 0}
-  input_Movement: {x: 0, y: 0}
-  input_View: {x: 0, y: 0}
-  Jump:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d2d5dc54-3f8d-42ef-8a53-84d9cc614a69
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  Sprint:
-    m_Name: Sprint
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 90178d98-8245-4c01-bbc6-769a2825d492
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  Interact:
-    m_Name: Interact
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 2329ee61-2e04-45a3-8680-bc0f13e64c38
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  Fire1:
-    m_Name: Fire 1
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c9457e15-a2bd-4674-94ae-74f87b201489
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  Fire2:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6c7e42fc-9718-45fe-9ac5-958035dc8a31
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  Fire3:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 580344d6-72bf-44c0-9fd1-04f62e4e6ad3
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  Reload:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 3ecc3d71-28f7-4682-bfc5-8fc74d56022f
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  Weapon1:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b6320851-f607-4cb8-997f-5337f9714110
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  Weapon2:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: a75bf7a3-5240-4109-aba6-4979f3f2e09b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  playerSettings:
+    ViewXSensitivity: 0
+    ViewYSensitivity: 0
+    ViewXInverted: 0
+    ViewYInverted: 0
+    moveSpeedF: 0
+    moveSpeedS: 0
+    moveSpeedB: 0
+    runMulti: 0
+    JumpingHeight: 0
+    JumpingFalloff: 0
   walkingSpeed: 10
   runningSpeed: 15
   jumpingForce: {x: 0, y: 0, z: 0}
-  JumpingFalloff: 3
-  gravity: 0
   gravityAmount: 0
   gravityMin: 0
+  playerGravity: 0
   lookSpeed: 1
   viewClampYMin: -70
   viewClampYMax: 80

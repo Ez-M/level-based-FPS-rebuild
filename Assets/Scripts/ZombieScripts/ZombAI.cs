@@ -109,7 +109,7 @@ public class ZombAI : MonoBehaviour
                 //     }
 
 
-                    break;
+                    // break;
                 case AIState.entering:
                     break;
                 case AIState.chasing:

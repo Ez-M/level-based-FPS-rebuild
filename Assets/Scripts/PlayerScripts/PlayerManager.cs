@@ -11,6 +11,9 @@ public class PlayerManager : MonoBehaviour
     public GameObject leanPoint;
     public GameObject playerHead;
     public Camera playerCam;
+
+    public PlayerInputHandler playerInputHandler;
+
     public Camera gunCam;    
 
     public PlayerController playerController; 
@@ -36,6 +39,7 @@ public class PlayerManager : MonoBehaviour
 
     void Awake(){
         init();
+        playerInputHandler.init();
         playerController.init(this);
     }
     
@@ -61,6 +65,8 @@ public class PlayerManager : MonoBehaviour
         // playerCam = playerHead.transform.GetChild(0).gameObject.GetComponent<Camera>();
         playerCam = playerCap.transform.GetChild(0).gameObject.GetComponent<Camera>();
         // gunCam = playerCam.transform.GetChild(0).gameObject.GetComponent<Camera>();
+
+        playerInputHandler = playerCap.GetComponent<PlayerInputHandler>();
 
         characterController = playerCap.GetComponent<CharacterController>();
         // inventoryController = gameObject.GetComponent<InventoryController>();

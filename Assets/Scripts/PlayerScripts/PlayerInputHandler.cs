@@ -53,7 +53,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     }
 
-    private void setInputs()
+    public void init()
     {
         playerInputs = new PlayerInputs();
 

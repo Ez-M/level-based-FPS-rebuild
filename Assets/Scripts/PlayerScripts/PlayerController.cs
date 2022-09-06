@@ -12,7 +12,7 @@ using static scr_Models;
 public class PlayerController : MonoBehaviour
 {
 
-#region -Init Connections-
+    #region -Init Connections-
     private bool gunisInit;
 
     private PlayerManager playerManager;
@@ -20,9 +20,9 @@ public class PlayerController : MonoBehaviour
     private GameObject leanPoint;
     private GameObject playerHead;
     private Camera playerCam;
-    private Camera gunCam;    
+    private Camera gunCam;
 
-    private PlayerController playerController; 
+    private PlayerController playerController;
     private PlayerInputHandler playerInputHandler;
     // private PlayerMovement playerMovement;
 
@@ -38,12 +38,12 @@ public class PlayerController : MonoBehaviour
     private TMPro.TextMeshProUGUI CST; //centerscreentext
 
     private CharacterController characterController;
-   
+
     #endregion
 
     Vector3 moveDirection = Vector3.zero;
 
-    
+
 
 
     //    #region -INPUTS IN-
@@ -68,40 +68,41 @@ public class PlayerController : MonoBehaviour
     //    #endregion
 
 
-        #region -MOVEMENT STATS-            
+    #region -MOVEMENT STATS-            
 
-        [Header("Movement Values")]
-        public PlayerSettingsModel playerSettings;
-        public float walkingSpeed = 10f;
-        public float runningSpeed = 15f;
-        public Vector3 jumpingForce;
-        private Vector3 jumpingForceVelocity;      
-        public float gravityAmount;
-        public float gravityMin;
-        public float playerGravity;
-        public float lookSpeed = 1f;
+    [Header("Movement Values")]
+    public PlayerSettingsModel playerSettings;
+    public float walkingSpeed = 10f;
+    public float runningSpeed = 15f;
+    public Vector3 jumpingForce;
+    private Vector3 jumpingForceVelocity;
+    public float gravityAmount;
+    public float gravityMin;
+    public float playerGravity;
+    public float lookSpeed = 1f;
 
-        public float viewClampYMin = -70;
-        public float viewClampYMax = 80;       
-        float rotationX = 0;
-        public bool canMove = true;
-        public bool runInterrupt = false;
-        public bool isRunning;
+    public float viewClampYMin = -70;
+    public float viewClampYMax = 80;
+    float rotationX = 0;
+    public bool canMove = true;
+    public bool runInterrupt = false;
+    public bool isRunning;
 
-        #endregion
-
-
-          private Vector2 input_Movement;
-          private Vector2 input_View;
-
-       private Vector3 newCameraRotation;
-       private Vector3 newCharacterRotation;
-       
+    #endregion
 
 
-    void Awake(){
-        
-        
+    private Vector2 input_Movement;
+    private Vector2 input_View;
+
+    private Vector3 newCameraRotation;
+    private Vector3 newCharacterRotation;
+
+
+
+    void Awake()
+    {
+
+
     }
 
 
@@ -112,12 +113,12 @@ public class PlayerController : MonoBehaviour
     {
 
         // characterController = GetComponent<CharacterController>();
-        
 
-                // Lock Cursor
+
+        // Lock Cursor
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible=false;    
-        
+        Cursor.visible = false;
+
 
 
     }
@@ -128,42 +129,47 @@ public class PlayerController : MonoBehaviour
 
 
         #region -Movement and Look- 
-        if(canMove)
+        if (canMove)
         {
+            input_Movement = playerInputHandler.input_Movement;
+            input_View = playerInputHandler.input_View;
             CalculateMovement();
             CalculateView();
             CalculateJumpChange();
         }
-        
+
         #endregion
-        
+
     }
 
-        #region -isLook&isMove-
-            public bool isLook
+    #region -isLook&isMove-
+    public bool isLook
+    {
+        get
         {
-            get {
-                if(input_View != Vector2.zero)
+            if (input_View != Vector2.zero)
                 return true;
-                else
+            else
                 return false;
-            }
         }
-        public bool isMove
+    }
+    public bool isMove
+    {
+        get
         {
-            get {
-                if(input_Movement != Vector2.zero)
+            if (input_Movement != Vector2.zero)
                 return true;
-                else
+            else
                 return false;
-            }
         }
+    }
 
-        #endregion
+    #endregion
 
     #region -Funcs-
 
-    public void init(PlayerManager initializer){
+    public void init(PlayerManager initializer)
+    {
 
         playerManager = initializer;
         playerCap = playerManager.playerCap;
@@ -172,18 +178,16 @@ public class PlayerController : MonoBehaviour
         playerHead = playerManager.playerHead;
         playerCam = playerManager.playerCam;
         // gunCam = playerManager.gunCam;   
+        playerInputHandler = playerManager.playerInputHandler;
 
-        inventoryController = initializer.GetComponent<InventoryController>();
+        // inventoryController = initializer.GetComponent<InventoryController>();
         characterController = initializer.characterController;
-        
-
 
         newCameraRotation = playerHead.transform.localRotation.eulerAngles;
         newCharacterRotation = playerHead.transform.localRotation.eulerAngles;
 
-
-        input_Movement = playerInputHandler.input_Movement; 
-        input_View = playerInputHandler.input_View; 
+        playerInputHandler.Jump.started += JumpFunction;
+ 
 
         // WeaponUI = playerManager.WeaponUI;
         // WUIC = playerManager.WUIC;
@@ -191,26 +195,15 @@ public class PlayerController : MonoBehaviour
         // AmmoCounter = playerManager.AmmoCounter;
         // CST = playerManager.CST;
 
-        getInputs();
-    
     }
 
 
-    private void getInputs()
+    private void CalculateMovement()
     {
 
 
-
-
-        
-    }
-
-    private void CalculateMovement()
-    {   
- 
-        
         float forwardSpeed = (isRunning == true ? runningSpeed : walkingSpeed) * input_Movement.y * Time.deltaTime;
-        float horizontalSpeed = (isRunning == true ? runningSpeed: walkingSpeed) * input_Movement.x * Time.deltaTime;
+        float horizontalSpeed = (isRunning == true ? runningSpeed : walkingSpeed) * input_Movement.x * Time.deltaTime;
 
         Vector3 newMovementSpeed = new Vector3(horizontalSpeed, 0, forwardSpeed);
 
@@ -218,23 +211,23 @@ public class PlayerController : MonoBehaviour
         newMovementSpeed = transform.TransformDirection(newMovementSpeed);
 
 
-        if(playerGravity > gravityMin)
+        if (playerGravity > gravityMin)
         {
-            playerGravity -= gravityAmount*Time.deltaTime;
+            playerGravity -= gravityAmount * Time.deltaTime;
         }
         else
         {
 
         }
-            
+
 
         if (playerGravity < -0.1 && characterController.isGrounded)
         {
-                playerGravity = -0.1f;
+            playerGravity = -0.1f;
         }
 
         newMovementSpeed.y += playerGravity;
-        newMovementSpeed += jumpingForce*Time.deltaTime;
+        newMovementSpeed += jumpingForce * Time.deltaTime;
 
         characterController.Move(newMovementSpeed);
     }
@@ -254,24 +247,24 @@ public class PlayerController : MonoBehaviour
         playerHead.transform.localRotation = Quaternion.Euler(newCameraRotation);
     }
 
-        private void CalculateJumpChange()
+    private void CalculateJumpChange()
     {
 
         jumpingForce = Vector3.SmoothDamp(jumpingForce, Vector3.zero, ref jumpingForceVelocity, playerSettings.JumpingFalloff);
 
     }
 
-        private void JumpFunction(InputAction.CallbackContext value)
+    private void JumpFunction(InputAction.CallbackContext value)
     {
-        if(characterController.isGrounded)
+        if (characterController.isGrounded)
         {
             //Jump
-        jumpingForce = Vector3.up*playerSettings.JumpingHeight;
-        playerGravity = 0;
+            jumpingForce = Vector3.up * playerSettings.JumpingHeight;
+            playerGravity = 0;
 
         }
 
-        
+
 
     }
 
