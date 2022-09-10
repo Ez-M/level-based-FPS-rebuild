@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5982154641093402819}
+  - component: {fileID: 4557764871764100505}
   m_Layer: 0
   m_Name: Weapon_Proto
   m_TagString: Untagged
@@ -65,6 +66,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4557764871764100505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675048678400057471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2145b81916839474f980cf81e2a261ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxInReserve: 30
+  inReserve: 30
+  maxInMag: 10
+  inMag: 10
+  Dam: 1
+  RangeOptimal: 1
+  RangeMax: 50
+  Rof: 0.25
+  LoadTime: 1
+  ArmorPen: 1
+  disRunMulti: 2
+  HitForce: 100
+  BurstMin: 1
+  BurstMax: 1
+  ShotsPerShot: 1
+  minAmmo: 1
+  DisBase: 15
+  DisStand: 1
+  DisCrouch: 1
+  DisProne: 1
+  DisWalk: 2
+  DisCrouchWalk: 1
+  DisRun: 5
+  DisSlide: 1
+  DisJump: 1
+  ADSSpeed: 10
+  isAuto: 0
+  canAttack: 1
+  hasFired: 0
+  isReloading: 0
+  hasAmmo: 1
+  nextFireAt: 0
+  laserLine: {fileID: 0}
+  gunSound: {fileID: 0}
+  bang: {fileID: 0}
+  reload: {fileID: 0}
+  click: {fileID: 0}
+  gun: {fileID: 7005342499020256336}
+  hipPosition: {fileID: 8131739665065368163}
+  ADSPosition: {fileID: 101075610694770108}
+  inventoryController: {fileID: 0}
 --- !u!1 &7005342499020256336
 GameObject:
   m_ObjectHideFlags: 0

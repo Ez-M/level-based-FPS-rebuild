@@ -50,6 +50,7 @@ public class WeaponShoot : MonoBehaviour
     private bool gunisInit;
 
     private PlayerManager playerManager;
+    private PlayerInputHandler playerInputHandler;
     private GameObject playerCap;
     private GameObject leanPoint;
     private GameObject playerHead;
@@ -87,6 +88,29 @@ public class WeaponShoot : MonoBehaviour
     }
 
     #region  -Funcs-
+
+    public void init(PlayerManager initializer)
+    {
+
+        playerManager = initializer;
+        playerCap = playerManager.playerCap;
+        playerController = playerManager.playerController;
+        // leanPoint = playerManager.leanPoint;
+        playerHead = playerManager.playerHead;
+        playerCam = playerManager.playerCam;
+        // gunCam = playerManager.gunCam;   
+        playerInputHandler = playerManager.playerInputHandler;
+
+        // inventoryController = initializer.GetComponent<InventoryController>();
+        characterController = initializer.characterController;
+
+        // WeaponUI = playerManager.WeaponUI;
+        // WUIC = playerManager.WUIC;
+        // ScoreCard = playerManager.ScoreCard;
+        // AmmoCounter = playerManager.AmmoCounter;
+        // CST = playerManager.CST;
+
+    }
 
     public void weaponFire1(PlayerManager attacker)
     {
