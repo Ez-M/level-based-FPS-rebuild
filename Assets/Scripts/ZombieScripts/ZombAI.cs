@@ -290,7 +290,7 @@ public class ZombAI : MonoBehaviour
 
 
 
-    public void Damage(PlayerShoot profileIn, GameObject target)
+    public void Damage(WeaponShoot profileIn, GameObject target)
     {
         if (health > 0)
         {
