@@ -50,7 +50,7 @@ public class PlayerInputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+   
     }
 
     public void init()
@@ -67,6 +67,10 @@ public class PlayerInputHandler : MonoBehaviour
 
         playerInputs.Character.Movement.performed += e => input_Movement = e.ReadValue<Vector2>();
         playerInputs.Character.View.performed += e => input_View = e.ReadValue<Vector2>();
+
+        initializeInputs();
+
+        
 
 
         playerInputs.Enable();
@@ -130,6 +134,15 @@ public class PlayerInputHandler : MonoBehaviour
     {
         input_Fire2 = false;
     }
+    private void Fire3isPressed(InputAction.CallbackContext value)
+    {
+        input_Fire3 = true;
+    }
+
+    private void Fire3isReleased(InputAction.CallbackContext value)
+    {
+        input_Fire3 = false;
+    }
 
     public void InteractisPressed(InputAction.CallbackContext value)
     {
@@ -171,6 +184,30 @@ public class PlayerInputHandler : MonoBehaviour
 
     #endregion
 
+
+    private void initializeInputs()
+    {
+        Jump.performed += jumpisPressed;
+        Jump.canceled += jumpisReleased;
+
+        Sprint.performed += sprintisPressed;
+        Sprint.canceled += SprintisReleased;
+
+        Interact.performed += InteractisPressed;
+        Interact.canceled += InteractisReleased;
+
+        Fire1.performed += Fire1isPressed;
+        Fire1.canceled += Fire1isReleased;
+
+        Fire2.performed += Fire2isPressed;
+        Fire2.canceled += Fire2isReleased;
+
+        Fire3.performed += Fire3isPressed;
+        Fire3.canceled += Fire3isReleased;
+
+        Reload.performed += ReloadisPressed;
+        Reload.canceled += ReloadisReleased;
+    }
 
     public bool getAcceptingInputs()
     {

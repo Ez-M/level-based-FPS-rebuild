@@ -41,6 +41,7 @@ public class PlayerManager : MonoBehaviour
         init();
         playerInputHandler.init();
         playerController.init(this);
+        activeWeapon.GetComponent<WeaponShoot>().init(this);
     }
     
     // Start is called before the first frame update
@@ -58,18 +59,19 @@ public class PlayerManager : MonoBehaviour
 
     #region -Funcs-
     public void init(){
-        playerCap = gameObject.transform.GetChild(0).gameObject;
+        playerCap = gameObject.transform.GetChild(0).gameObject;        //playerModel
         playerController = playerCap.GetComponent<PlayerController>();
         // leanPoint = playerCap.transform.GetChild(0).gameObject;
-        playerHead = playerCap.transform.GetChild(0).gameObject;
-        // playerCam = playerHead.transform.GetChild(0).gameObject.GetComponent<Camera>();
-        playerCam = playerCap.transform.GetChild(0).gameObject.GetComponent<Camera>();
+        playerHead = playerCap.transform.GetChild(0).gameObject;        //CameraHolder
+        playerCam = playerHead.transform.GetChild(0).gameObject.GetComponent<Camera>();
+        // playerCam = playerCap.transform.GetChild(0).gameObject.GetComponent<Camera>();
         // gunCam = playerCam.transform.GetChild(0).gameObject.GetComponent<Camera>();
 
         playerInputHandler = playerCap.GetComponent<PlayerInputHandler>();
 
         characterController = playerCap.GetComponent<CharacterController>();
         // inventoryController = gameObject.GetComponent<InventoryController>();
+        activeWeapon = playerCam.transform.GetChild(0).GetChild(0).gameObject;
         }
 
     public void setPlayerHP(float to)

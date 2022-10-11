@@ -71,6 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1060632969844117721}
+  - component: {fileID: 9058216887838256238}
   m_Layer: 0
   m_Name: Revolver_Standard
   m_TagString: Untagged
@@ -96,6 +97,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9058216887838256238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7067510948537214758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2145b81916839474f980cf81e2a261ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxInReserve: 30
+  inReserve: 30
+  maxInMag: 10
+  inMag: 10
+  Dam: 1
+  RangeOptimal: 1
+  RangeMax: 50
+  Rof: 0.25
+  LoadTime: 1
+  ArmorPen: 1
+  disRunMulti: 2
+  HitForce: 100
+  BurstMin: 1
+  BurstMax: 1
+  ShotsPerShot: 1
+  minAmmo: 1
+  DisBase: 15
+  DisStand: 1
+  DisCrouch: 1
+  DisProne: 1
+  DisWalk: 2
+  DisCrouchWalk: 1
+  DisRun: 5
+  DisSlide: 1
+  DisJump: 1
+  ADSSpeed: 10
+  isAuto: 0
+  canAttack: 1
+  hasFired: 0
+  isReloading: 0
+  hasAmmo: 1
+  nextFireAt: 0
+  laserLine: {fileID: 0}
+  gunSound: {fileID: 0}
+  bang: {fileID: 0}
+  reload: {fileID: 0}
+  click: {fileID: 0}
+  gun: {fileID: 2989276054581999495}
+  hipPosition: {fileID: 630722202075829721}
+  ADSPosition: {fileID: 4696512043235328918}
+  inventoryController: {fileID: 0}
 --- !u!1001 &2989276054582115307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -153,6 +207,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d6fada1e8caa1488140d8433a67d6b, type: 3}
+--- !u!1 &2989276054581999495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 150636, guid: 20d6fada1e8caa1488140d8433a67d6b, type: 3}
+  m_PrefabInstance: {fileID: 2989276054582115307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2989276054582202349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 439302, guid: 20d6fada1e8caa1488140d8433a67d6b, type: 3}

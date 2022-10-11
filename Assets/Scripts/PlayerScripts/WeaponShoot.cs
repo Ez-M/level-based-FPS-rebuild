@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponShoot : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class WeaponShoot : MonoBehaviour
     public AudioSource gunSound;
     public AudioClip bang, reload, click;
 
-        private Transform gunEnd;
+    public Transform gunEnd;
     public GameObject gun, hipPosition, ADSPosition;
 
     private GameObject hitDecal;
@@ -84,14 +85,23 @@ public class WeaponShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Fire1_In = playerInputHandler.input_Fire1;
+
+        weaponFire1(playerManager);
 
     }
+
+    private void onEnable(){
+        playerInputHandler.Fire1.canceled += triggerWasReset;
+    }
+
 
     #region  -Funcs-
 
     public void init(PlayerManager initializer)
     {
-
+        if(gunisInit != true)
+        {
         playerManager = initializer;
         playerCap = playerManager.playerCap;
         playerController = playerManager.playerController;
@@ -103,6 +113,7 @@ public class WeaponShoot : MonoBehaviour
 
         // inventoryController = initializer.GetComponent<InventoryController>();
         characterController = initializer.characterController;
+        playerInputHandler.Fire1.canceled += triggerWasReset;
 
         // WeaponUI = playerManager.WeaponUI;
         // WUIC = playerManager.WUIC;
@@ -110,18 +121,45 @@ public class WeaponShoot : MonoBehaviour
         // AmmoCounter = playerManager.AmmoCounter;
         // CST = playerManager.CST;
 
+        gunisInit = true;
+        }
     }
+
+
+    public void onEquipActive(PlayerManager player)
+    {
+        playerInputHandler.Fire1.canceled += triggerWasReset;
+        //check last weapon state
+        //play appropriate equip animation
+        //update state
+    }
+    public void onUnequipActive(PlayerManager player)
+    {
+        if(hasFired != false){hasFired = false;}
+        playerInputHandler.Fire1.canceled -= triggerWasReset;
+        //check last weapon state
+        //play appropriate equip animation
+        //update state
+    }
+    private void triggerWasReset(InputAction.CallbackContext value)
+    {
+        hasFired = false;
+    }
+
 
     public void weaponFire1(PlayerManager attacker)
     {
-
           
         if(canAttack && (Fire1_In == true && (hasFired == false || isAuto == true))){         //check if something is blocking attack action
+            Debug.Log("weaponfire1 124");
+
             if (Time.time > nextFireAt && inReserve > minAmmo)   {   //// gun loaded behavior check ////
+             Debug.Log("weaponfire1 127");
+
 
 
                 // Update the time when our player can fire next
-                nextFireAt = Time.time + (60/Rof);       
+                nextFireAt = Time.time + (1);       
 
                 // Start our ShotEffect coroutine to turn our laser line on and off
                 StartCoroutine(ShotEffect());
@@ -142,7 +180,7 @@ public class WeaponShoot : MonoBehaviour
                 {
                     if (Physics.Raycast(rayOrigin, bulletTrajectory, out hit, RangeMax, 1, QueryTriggerInteraction.Ignore))
                     {
-
+                        
 
 
 
@@ -211,13 +249,14 @@ public class WeaponShoot : MonoBehaviour
 
             }
 
+        Debug.Log("weaponfire1 222");
 
             hasFired = true;
         }
     }
 
 
-        private IEnumerator loadGun()
+    private IEnumerator loadGun()
     {
 
         Debug.Log("reloading");
@@ -255,7 +294,7 @@ public class WeaponShoot : MonoBehaviour
     }
 
 
-        private IEnumerator ShotEffect()
+    private IEnumerator ShotEffect()
     {
         //Turn on our line renderer
         laserLine.enabled = true;
@@ -268,10 +307,12 @@ public class WeaponShoot : MonoBehaviour
     }
 
 
-        public void hitScore(float input)
+    public void hitScore(float input)
     {
         playerManager.scoreAdd(input);
     }
+
+
 
     #endregion
 }
